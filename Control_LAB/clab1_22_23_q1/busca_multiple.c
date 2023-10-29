@@ -14,6 +14,7 @@ void usage() {
     char buff[256];
     sprintf(buff,"Usage: ./busca_multiple word file_name1 [file_name2 ... file_name10]");
     write(1,buff,strlen(buff));
+    exit(1);
 }
 
 void main(int argc, char *argv[]) {
