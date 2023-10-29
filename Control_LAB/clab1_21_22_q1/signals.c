@@ -38,6 +38,7 @@ void usage() {
     char buff[256];
     sprintf(buff, "Usage ./jerarquia1 file_name1 [.. file_name10]\n");
     write(1,buff,strlen(buff));
+    exit(1);
 }
 
 void main (int argc, char *argv[]) {
