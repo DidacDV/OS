@@ -5,7 +5,9 @@ mknod NP p
 ```
 NP es el nombre del bloque especial.
 
-``p`` indica es un bloque especial tipo FIFO, una pipe
+``p`` indica es un bloque especial tipo FIFO, una pipe.
+
+Ahora ya podeis hacer `open` de la pipe
 
 Despues para probar el programa:
 
