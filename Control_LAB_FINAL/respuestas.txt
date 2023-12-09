@@ -1,0 +1,30 @@
+A) No sería factible puesto que en ese caso todos los procesos hijo2 compartirían el puntero de lectura/escritura sobre info.txt
+Por tanto, entre que un proceso hijo2 realiza el lseek y se dispone a efectuar la lectura de la posición del fichero, otro proceso hijo2 podría realizar otro lsseek y modificar el puntero de lectura/escritura.
+
+b)
+
+$ mkfifo NP
+$ ./spawnF 3 &
+[1] 33006
+$ SpawnA[pid=33006] created, N=3
+SpawnA[pid=33006] creates child id=00 pid=33007
+SpawnA[pid=33006] creates child id=01 pid=33008
+SpawnA[pid=33006] creates child id=02 pid=33009
+Hijo1[id=00 pid=33007] created
+Hijo1[id=01 pid=33008] created
+Hijo1[id=02 pid=33009] created
+
+$ ./echo_bin 4 > NP
+Hijo2[id=02 pid=33009] pos=4 char=e
+$ ./echo_bin 7 > NP
+Hijo2[id=00 pid=33007] pos=7 char=h
+$ ./echo_bin 1 12 4 4 4 7 > NP
+Hijo2[id=01 pid=33008] pos=12 char=m
+Hijo2[id=02 pid=33009] pos=1 char=b
+Hijo2[id=00 pid=33007] pos=4 char=e
+Hijo2[id=01 pid=33008] pos=4 char=e
+Hijo2[id=02 pid=33009] pos=4 char=e
+Hijo2[id=00 pid=33007] pos=7 char=h
+$
+
+
