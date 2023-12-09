@@ -17,4 +17,4 @@ Despues para probar el programa:
 ```
 Ponemos ``&`` para ejecutar en segundo plano (asi no tenemos que abrir otra terminal).
 
-``echo_bin`` nos transforma el entero a binario para que nuestra pipe NP.
+``echo_bin`` nos transforma el entero a binario para nuestra pipe NP.
