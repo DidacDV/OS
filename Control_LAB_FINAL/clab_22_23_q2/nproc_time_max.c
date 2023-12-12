@@ -27,7 +27,7 @@ int main(int argc, int *argv[]) {
     for (int i = 1; i < argc; ++i) {
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
-        if (pid == 0) {
+        else if (pid == 0) {
             dup2(fd1, 1);
             close(fd1); close(fd2);
             execl("proc_time","./proc_time", argv[i], NULL);
