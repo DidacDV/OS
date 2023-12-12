@@ -43,7 +43,8 @@ int main(int argc, char *argv[]) {
     }
     unsigned long t = atoi(&number[0]);
     t += atoi(&number[space]);
-    int time = t/sysconf(_SC_CLK_TCK);              //command to convert to seconds (detailed on man)
+    int time = t/sysconf(_SC_CLK_TCK);              //command to convert to seconds (detailed on man proc) 
+    
 
 
     //sprintf(s,"Tiempo en ejecución: %d segundos\n", time);      //Hasta que no llegueis al ejercicio 3 podeis usar este 
