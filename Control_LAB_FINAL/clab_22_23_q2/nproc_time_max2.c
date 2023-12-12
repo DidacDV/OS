@@ -27,6 +27,7 @@ int main(int argc, int *argv[]) {
         if (pid < 0) error(1,errno, "fork");
         else if (pid == 0) {
             dup2(fd[1], 1);
+            close(fd[0]);
             execl("proc_time","./proc_time", argv[i], NULL);
             error(1, errno, "execlp");
         }
