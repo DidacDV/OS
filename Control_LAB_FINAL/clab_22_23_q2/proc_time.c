@@ -17,7 +17,6 @@ void Usage() {
 int main(int argc, char *argv[]) {
     char buff[100], s[100];
     char c;
-    unsigned long t;
     if (argc != 2) Usage();
     int pid = atoi(argv[1]);                                     //could not be necessary
     sprintf(buff,"/proc/%d/stat",pid);
@@ -42,13 +41,13 @@ int main(int argc, char *argv[]) {
         number[p] = c;
         ++p;
     }
-    t = atoi(&number[0]);
+    unsigned long t = atoi(&number[0]);
     t += atoi(&number[space]);
-    t /= sysconf(_SC_CLK_TCK);              //command to convert to seconds (detailed on man)
+    int time = t/sysconf(_SC_CLK_TCK);              //command to convert to seconds (detailed on man)
 
 
-    //sprintf(s,"Tiempo en ejecución: %lu segundos\n", t);      //Hasta que no llegueis al ejercicio 3 podeis usar este 
-    sprintf(s,"%lu", t);                                        //%lu -> unsigned long
+    //sprintf(s,"Tiempo en ejecución: %d segundos\n", time);      //Hasta que no llegueis al ejercicio 3 podeis usar este 
+    sprintf(s,"%d", time);                                        
     if (write(1, s, strlen(s)) < 0) error(1,errno, "write");
 
 }
