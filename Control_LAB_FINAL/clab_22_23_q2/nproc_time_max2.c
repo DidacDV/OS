@@ -31,6 +31,7 @@ int main(int argc, int *argv[]) {
             error(1, errno, "execlp");
         }
         else {
+            close(fd[1]);
             while ((ret = read(fd[0], &c, sizeof(char))) > 0) {
                 number[p] = c;
                 number[p + 1] = ' ';
