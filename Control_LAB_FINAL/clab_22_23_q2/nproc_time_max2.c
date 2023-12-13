@@ -44,12 +44,14 @@ int main(int argc, int *argv[]) {
             if (t > max_time) max_time = t;
         }
     }
-
-    if (waitpid(-1, &exit_stat, 0) < 0) error(1, errno, "waitpid");
-    if (WIFEXITED(exit_stat)) {
-        exit_code = WEXITSTATUS(exit_stat);
-        if (exit_code == 255) error(1,0,"There is a not existent PID");
+    
+    while ((ret = waitpid(-1, &exit_stat, 0) > 0) { 
+     if (WIFEXITED(exit_stat)) {
+         exit_code = WEXITSTATUS(exit_stat);
+         if (exit_code == 255) error(1,0,"There is a not existent PID");
+     }
     }
+    if (ret < 0) error(1, errno, "waitpid");
     sprintf(buff, "Max_time: %d",max_time);
     if (write(1,buff, strlen(buff)) < 0) error(1, errno, "write");
 
