@@ -19,7 +19,7 @@ int main(int argc, int *argv[]) {
     char buff[100], c, number[100];
     if (argc < 2) Usage();
     int exit_stat, exit_code;
-    //if (mknod("./PipeA", S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0) error(1, errno, "mknod");
+    if (mknod("./PipeA", S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
    
     for (int i = 1; i < argc; ++i) { 
         int p = 0;
