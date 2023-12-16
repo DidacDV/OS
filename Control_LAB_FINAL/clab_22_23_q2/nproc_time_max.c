@@ -35,7 +35,7 @@ int main(int argc, int *argv[]) {
             if ((fd1 = open("PipeA", O_RDONLY)) < 0) error(1, errno, "open read");
             while ((ret = read(fd1, &c, sizeof(char))) > 0) {
                 number[p] = c;
-                number[p + 1] = ' ';
+                number[p + 1] = '\0';
                 ++p;
             }
             if (ret < 0) error(1, errno, "read");
