@@ -6,3 +6,5 @@
 ## max_5sec.c
 Works but is incorrect, it does not use nproc_time_max program, i do not know how to execute execlp with a variable size of arguments, if anyone who reads this know how to implemnt it, glad to hear it.
 
+> [!NOTE]
+> Update: According to the teacher the correct implementation of max_5sec.c is using execvp() function which uses a vector as an argument.
