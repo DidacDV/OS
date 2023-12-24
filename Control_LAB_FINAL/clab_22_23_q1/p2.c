@@ -33,10 +33,9 @@ int main(int argc, char *argv[]) {
 
     if (mknod("./MYPIPE",S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
 
-    if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado       
-    if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open father"); 
-
     for (int i = 1; i < argc; i += 2) {
+        if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado       
+        if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open father"); 
         int pid = fork();
         if (pid < 0) error(1, errno, "fork");
         else if (pid == 0) {
@@ -44,6 +43,7 @@ int main(int argc, char *argv[]) {
             sigaddset(&mask, SIGUSR1);
             if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask"); 
             dup2(fdwr, 10);
+            close(fdrd);
             execlp("./p1", "p1", argv[i], argv[i + 1], NULL);
             error(1, errno, "execlp");
 
@@ -82,8 +82,6 @@ int main(int argc, char *argv[]) {
                 int fd;    
                 sprintf(buff, "salida-%d.dat", pid);                              
                 if ((fd = creat(buff,S_IRUSR|S_IWUSR|S_IWGRP|S_IRGRP)) < 0) error(1, errno, "create");
-                sprintf(hh, "%d", fd);
-                write(1, hh, strlen(hh));
                 if (strcmp(argv[i + 1],"c") == 0) {
                     write(fd, elemc, strlen(elemc));
                     free(elemc);
