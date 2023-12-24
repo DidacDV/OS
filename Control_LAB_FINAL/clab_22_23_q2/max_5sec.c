@@ -62,7 +62,7 @@ int main(int argc, int *argv[]) {
             else if (pid == 0) {
                 close(1);
                 if ((fd2 = open("PipeA" ,O_WRONLY)) < 0) error(1, errno, "open write");
-                execl("proc_time","./proc_time", argv[i], NULL);
+                execlp("./proc_time","proc_time", argv[i], NULL);
                 error(1, errno, "execlp");
             }
             else {
