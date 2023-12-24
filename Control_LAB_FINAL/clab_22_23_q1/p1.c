@@ -46,11 +46,9 @@ int main(int argc, char *argv[]) {
         }
 
     }
-    else { 
-        char buff[100];                                                                   //write integer
+    else {                                                                //write integer
         for (int i = 0; i < n_elem; ++i) {   
-            sprintf(buff,"%d", i);    
-            write(10, buff,strlen(buff));
+            write(10, &i,sizeof(int));
         }
     }
 
