@@ -87,11 +87,7 @@ int main(int argc, char *argv[]) {
                     free(elemc);
                 }
                 else {
-                    int j = 0;
-                    while (j < n) {
-                        write(fd,&elemi[j], sizeof(int));       //Unico write?
-                        ++j;    
-                    }
+                    write(fd,elemi, sizeof(int) * n);
                     free(elemi);
                 }
 
