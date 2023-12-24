@@ -18,7 +18,6 @@ void Usage() {
 }
 
 int main(int argc, char *argv[]) {
-    char c;
     if (argc == 1 || argc > 3 || (argc == 3 && (strcmp(argv[2],"c") != 0 && strcmp(argv[2],"i") != 0)) || (argc == 2 && (strcmp(argv[0],"./p1-char") != 0 && strcmp(argv[0],"./p1-integer") != 0))) Usage();
 
     sigset_t mask;
@@ -33,16 +32,9 @@ int main(int argc, char *argv[]) {
     int n_elem = atoi(argv[1]);
     if ((argc == 3 && strcmp(argv[2],"c") == 0) || strcmp(argv[0],"./p1-char") == 0) {       //write char  
         for (int i = 0; i < n_elem; ++i) {
-            if (i < 10) {
-                c = '0' + i;
-                write(10, &c, sizeof(char));
-            }
-            else {
-                c = '0' + (i/10);
-                write(10, &c, sizeof(char));
-                c = '0' + (i%10);
-                write(10, &c, sizeof(char));
-            }
+            char buffc[100];
+            sprintf(buffc, "%d", i);
+            write(10, buffc, strlen(buffc));
         }
 
     }
