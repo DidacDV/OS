@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     }
     else {                                                                //write integer
         for (int i = 0; i < n_elem; ++i) {   
-            write(10, &i,sizeof(int));                                    //leer a partir de la pàg. 57 de Documentación_labs.pdf (para entender, si quereis )
+            write(10, &i,sizeof(int));                                    //leer a partir de la pàg. 57 de Documentación_labs.pdf (para entender, si quereis)
         }
     }
 
