@@ -22,8 +22,6 @@ void Usage() {
 }
 
 int main(int argc, char *argv[]) {
-    char hh[100];
-    sprintf(hh, "hola");
     int fdrd, fdwr;
     sigset_t mask;
     struct sigaction trat;
@@ -67,8 +65,7 @@ int main(int argc, char *argv[]) {
                if (ret < 0) error(1, errno, "read char");
             }
             else {
-               int j = 0, k;
-               char esc[100];
+               int j = 0;
                elemi = malloc(n * sizeof(int));
                close(fdwr);
                while ((ret = read(fdrd, &elemi[j], sizeof(int))) > 0) ++j;       
