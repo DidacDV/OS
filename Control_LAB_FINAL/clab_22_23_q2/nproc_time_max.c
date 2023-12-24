@@ -48,7 +48,7 @@ int main(int argc, int *argv[]) {
             }
         }
     }
-    sprintf(buff, "Max_time: %d",max_time);
+    sprintf(buff, "Max_time: %d\n",max_time);
     if (write(1,buff, strlen(buff)) < 0) error(1, errno, "write");
 
 }
