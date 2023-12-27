@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
                 char buff[100];
                 int fd;    
                 sprintf(buff, "salida-%d.dat", pid);                              
-                if ((fd = creat(buff,S_IRUSR|S_IWUSR|S_IWGRP|S_IRGRP)) < 0) error(1, errno, "create");
+                if ((fd = creat(buff,S_IRUSR|S_IWUSR|S_IWGRP|S_IRGRP)) < 0) error(1, errno, "create");        //Se puede hacer con open() tambien 
                 if (strcmp(argv[i + 1],"c") == 0) {
                     write(fd, elemc, strlen(elemc));
                     free(elemc);
