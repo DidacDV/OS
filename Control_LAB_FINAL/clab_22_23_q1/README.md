@@ -14,4 +14,4 @@ ln -s p1 p1-integer
 
 No se porque pero al crear el fichero ``salida-pid.dat``, se me crea sin permisos de escritura para grupo.
 
-He puesto dos maneras de abrir las pipes <sub> (no se si hay más) </sub>, ``OPCION 1`` y ``OPCION 2``, obviamente solo podeis hacer una a la vez, si poneis las intrucciones comentadas como **opcion 1** quitad las de la **opcion 2** y viceversa.
+He puesto dos maneras de abrir las pipes <sub> (no se si hay más) </sub>, ``OPCION 1`` y ``OPCION 2``, obviamente solo podeis hacer una a la vez, si poneis las instrucciones comentadas como **opcion 1** quitad las de la **opcion 2** y viceversa.
