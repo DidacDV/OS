@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
             sigemptyset(&mask);
             sigaddset(&mask, SIGUSR1);
             if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask"); 
-            //if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");    //OPCION 2
+            //if ((fdwr = open("MYPIPE", O_WRONLY)) < 0) error(1, errno, "open write");    //OPCION 2
             dup2(fdwr, 10);
             close(fdrd);                                                            //OPCION 1
             execlp("./p1", "p1", argv[i], argv[i + 1], NULL);
