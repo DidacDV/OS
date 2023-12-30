@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; i += 2) {
         if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado       
-        if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open father"); 
+        if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open read"); 
         int pid = fork();
         if (pid < 0) error(1, errno, "fork");
         else if (pid == 0) {
