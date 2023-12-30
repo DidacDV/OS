@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     sa.sa_flags = 0;
     sigdelset(&mask, SIGALRM);
     if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask_2");
-    sigaction(SIGALRM, &sa, NULL);
+    if (sigaction(SIGALRM, &sa, NULL) < 0) error(1, errno, "sigaction");
     if (argc != 4) Usage();
     int n = atoi(argv[1]);
     int seed = atoi(argv[2]);
