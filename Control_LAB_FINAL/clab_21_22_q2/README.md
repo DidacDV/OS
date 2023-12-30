@@ -1,4 +1,4 @@
->[!IMPORTANT]
+>[!WARNING]
 > No esta terminado
 
 ## dummy.c
