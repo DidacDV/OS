@@ -32,16 +32,17 @@ int main(int argc, char *argv[]) {
     if (mknod("./MYPIPE",S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
 
     for (int i = 1; i < argc; i += 2) {
-        if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado       
-        if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open read"); 
+        if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado   //OPCION 1    
+        if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open read");    //OPCION 1
         int pid = fork();
         if (pid < 0) error(1, errno, "fork");
         else if (pid == 0) {
             sigemptyset(&mask);
             sigaddset(&mask, SIGUSR1);
             if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask"); 
+            //if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");    //OPCION 2
             dup2(fdwr, 10);
-            close(fdrd);
+            close(fdrd);                                                            //OPCION 1
             execlp("./p1", "p1", argv[i], argv[i + 1], NULL);
             error(1, errno, "execlp");
 
@@ -53,13 +54,14 @@ int main(int argc, char *argv[]) {
             alarm(2);
             while(!go);
             kill(pid, SIGUSR1);
+            //if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open read");    //OPCION 2
             int ret, *elemi;
             char *elemc;
             if (strcmp(argv[i + 1],"c") == 0) {
                char c; 
                int j = 0;
                elemc = malloc(n * sizeof(char));         //En verdad deberia ser más, pero malloc siempre reserva más de lo necesario :)
-               close(fdwr);
+               close(fdwr);                               //OPCION 1
                while ((ret = read(fdrd, &elemc[j], sizeof(char))) > 0) ++j; 
                elemc[j] = '\0';
                if (ret < 0) error(1, errno, "read char");
@@ -67,7 +69,7 @@ int main(int argc, char *argv[]) {
             else {
                int j = 0;
                elemi = malloc(n * sizeof(int));
-               close(fdwr);
+               close(fdwr);                            //OPCION 1
                while ((ret = read(fdrd, &elemi[j], sizeof(int))) > 0) ++j;       
                if (ret < 0) error(1, errno, "read integer");
                
