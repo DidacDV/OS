@@ -7,4 +7,5 @@ p1: p1.c
 p2: p2.c
 	gcc -o p2 p2.c
 
-clean: p1 p2
+clean: 
+	rm p1 p2
