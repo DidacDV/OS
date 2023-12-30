@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     if (mknod("./MYPIPE",S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
 
     for (int i = 1; i < argc; i += 2) {
-        if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado   //OPCION 1    
+        if ((fdwr = open("MYPIPE", O_RDWR)) < 0) error(1, errno, "open write");     //IMPORTANTE HA DE SER O_RDWR, si no se queda bloqueado   //OPCION 1   (Leer README) 
         if ((fdrd = open("MYPIPE", O_RDONLY)) < 0) error(1, errno, "open read");    //OPCION 1
         int pid = fork();
         if (pid < 0) error(1, errno, "fork");
