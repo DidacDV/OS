@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
         number[p] = c;
         ++p;
     }
-    unsigned long t = atoi(&number[0]);
+    unsigned long t = atoi(number);
     t += atoi(&number[space]);
     int time = t/sysconf(_SC_CLK_TCK);              //command to convert to seconds (detailed on man proc) 
     
