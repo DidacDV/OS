@@ -33,14 +33,10 @@ int main(int argc, int *argv[]) {
         }
         else {
             close(fd[1]);
-            while ((ret = read(fd[0], &c, sizeof(char))) > 0) {
-                number[p] = c;
-                number[p + 1] = '\0';
-                ++p;
-            }
-            if (ret < 0) error(1, errno, "read");
+            if ((ret = read(fd[0], number, sizeof(number))) < 0) error(1, errno, "read");
+            number[ret] = '\0';
             free(fd);
-            t = atoi(&number[0]);
+            t = atoi(number);
             if (t > max_time) max_time = t;
         }
     }
