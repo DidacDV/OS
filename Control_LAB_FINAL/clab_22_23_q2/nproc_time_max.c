@@ -16,7 +16,7 @@ void Usage() {
 
 int main(int argc, int *argv[]) {
     int max_time = 0, fd1, fd2, t, ret;
-    char buff[100], c, number[100];
+    char buff[100], number[100];
     if (argc < 2) Usage();
     int exit_stat, exit_code;
     if (mknod("./PipeA", S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
@@ -33,13 +33,9 @@ int main(int argc, int *argv[]) {
         }
         else {
             if ((fd1 = open("PipeA", O_RDONLY)) < 0) error(1, errno, "open read");
-            while ((ret = read(fd1, &c, sizeof(char))) > 0) {
-                number[p] = c;
-                number[p + 1] = '\0';
-                ++p;
-            }
-            if (ret < 0) error(1, errno, "read");
-            t = atoi(&number[0]);
+            if ((ret = read(fd1, number, sizeof(number))) < 0) error(1, errno, "read");
+            number[ret] = '\0';
+            t = atoi(number);
             if (t > max_time) max_time = t;
             if (waitpid(pid, &exit_stat, 0) < 0) error(1, errno, "waitpid");
             if (WIFEXITED(exit_stat)) {
