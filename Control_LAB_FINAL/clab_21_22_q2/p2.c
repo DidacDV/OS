@@ -17,7 +17,7 @@ void trat_alrm() {
 
 
 void Usage() {
-    error(1, 0, "Invalid argument\n Correcr usage: ./p1 num_process seed max_seconds");
+    error(1, 0, "Invalid argument\n Correcr usage: ./p2 num_process seed max_seconds");
 }
 
 
