@@ -21,7 +21,8 @@ void Usage() {
 }
 
 
-int main(int argc, char *argv[]) {   
+int main(int argc, char *argv[]) {  
+    if (argc != 4) Usage();
     int time = atoi(argv[3]);
     alarm(time);
     int exit_code = 0;
@@ -34,7 +35,6 @@ int main(int argc, char *argv[]) {
     sigdelset(&mask, SIGALRM);
     if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask_2");
     if (sigaction(SIGALRM, &sa, NULL) < 0) error(1, errno, "sigaction");
-    if (argc != 4) Usage();
     int n = atoi(argv[1]);
     int seed = atoi(argv[2]);
     for (int i = 0; i < n; ++i) {
