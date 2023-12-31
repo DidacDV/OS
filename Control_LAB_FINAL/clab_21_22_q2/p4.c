@@ -14,7 +14,7 @@ void Usage() {
 
 
 int main(int argc, char *argv[]) {
-    int exit_code   , fd[2], pidn;
+    int exit_code, fd[2], pidn;
     if (argc != 3) Usage();
     int n = atoi(argv[1]);
     int seed = atoi(argv[2]), seed2 = seed;
