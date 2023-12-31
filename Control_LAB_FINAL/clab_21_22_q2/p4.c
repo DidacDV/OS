@@ -9,7 +9,7 @@
 
 
 void Usage() {
-    error(1, 0, "Invalid argument\n Correcr usage: ./p1 X Y {X -> natural, Y -> integer}");
+    error(1, 0, "Invalid argument\n Correcr usage: ./p4 X Y {X -> natural, Y -> integer}");
 }
 
 
