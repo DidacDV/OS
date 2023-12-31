@@ -7,6 +7,8 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <signal.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 void trat_alrm() {
     char buff[256];
@@ -17,24 +19,27 @@ void trat_alrm() {
 
 
 void Usage() {
-    error(1, 0, "Invalid argument\n Correcr usage: ./p1 num_process seed max_seconds");
+    error(1, 0, "Invalid argument\n Correcr usage: ./p1 num_process seed max_seconds file_name");
 }
 
 
-int main(int argc, char *argv[]) {   
-    if (argc != 4) Usage();
+int main(int argc, char *argv[]) {
+    if (argc != 5) Usage();   
     int time = atoi(argv[3]);
     alarm(time);
     int exit_code = 0;
     sigset_t mask;
     sigfillset(&mask);
     if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask_1");
+    int fd;
+    if ((fd = creat(argv[4], S_IRUSR|S_IWUSR)) < 0) error(1, errno, "creat");       // = open(O_CREAT|O_WRONLY|O_TRUNC)
+    dup2(fd, 1);
     struct sigaction sa;
     sa.sa_handler = trat_alrm;
     sa.sa_flags = 0;
     sigdelset(&mask, SIGALRM);
     if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask_2");
-    sigaction(SIGALRM, &sa, NULL);
+    sigaction(SIGALRM, &sa, NULL);   
     int n = atoi(argv[1]);
     int seed = atoi(argv[2]);
     for (int i = 0; i < n; ++i) {
