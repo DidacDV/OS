@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
     int n = atoi(argv[1]);
     int seed = atoi(argv[2]);
     for (int i = 0; i < n; ++i) {
-        seed += exit_code;
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
         else if (pid == 0) {
@@ -52,6 +51,7 @@ int main(int argc, char *argv[]) {
             if (waitpid(pid, &exit_status, 0) < 0) error(1, errno, "waitpid");
             if (WIFEXITED(exit_status)) {
                 exit_code = WEXITSTATUS(exit_status);
+                seed += exit_code;
             }
         }
     }
