@@ -12,7 +12,7 @@ Cada vez que mateis a un hijo, usad
 ```bash
 xxd exit_status.int
 ```
-y comprobad que se escribe los 8 bytes de cada proceso en la posicion correcta.
+y comprobad que se escriben los 8 bytes de cada proceso en la posicion correcta.
 
 
 ## lee_signals
