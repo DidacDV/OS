@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <errno.h>
 
 int *vpid, n;
 
@@ -60,7 +61,9 @@ int main(int argc, char *argv[]) {
             write(fd, &exit_status, sizeof(int));  
         }  
     }
-    if (pid < 0) error_y_exit("waitpid");
+    if (pid < 0 && errno != ECHILD) {
+        error_y_exit("waitpid");
+    }
 
     free(vpid);
 }
