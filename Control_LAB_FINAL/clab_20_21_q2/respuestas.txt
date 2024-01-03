@@ -1,0 +1,4 @@
+kill -INT PID -> Terminado por SIGINT
+kill -USR1 PID -> Terminado por SIGUSR1
+kill -USR2 PID -> Terminado por SIGUSR2
+
