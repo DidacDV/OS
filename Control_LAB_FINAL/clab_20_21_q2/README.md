@@ -1,2 +1,2 @@
-> [!WARING]
+[!WARING]
 > No esta terminado
