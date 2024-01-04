@@ -25,7 +25,7 @@ mknod mis_eventos p
   ```bash
   rm datos.int
   ```
-2. Yo pongo 3 para probar los 3 signals,
+2. Pongo 3 para probar los 3 signals,
   ```bash
   ./n_espera_sig 3&
   ```
