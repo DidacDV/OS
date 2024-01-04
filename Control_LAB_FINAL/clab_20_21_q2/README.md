@@ -36,7 +36,9 @@ mknod mis_eventos p
   ./guarda_pares PID2 12
   ```
 `2` -> **SIGINT**
+
 `10` -> **SIGUSR1**
+
 `12` -> **SIGUSR2**
 
 4. Por ultimo,
