@@ -22,9 +22,9 @@ mknod mis_eventos p
 > [!NOTE]
 > Todo en la misma terminal
 1. Ejecutad el comando
-   ```bash
-   rm datos.int
-   ```
+  ```bash
+  rm datos.int
+  ```
 2. Yo pongo 3 para probar los 3 signals,
   ```bash
   ./n_espera_sig 3&
