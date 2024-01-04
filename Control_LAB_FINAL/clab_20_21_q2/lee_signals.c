@@ -39,11 +39,11 @@ int main(int argc, char *argv[]) {
     int num[2], ret, i = 0;
     while ((ret = read(fd1, num, sizeof(num))) > 0) {
         char buff[100];
-        if (write(pipefd, num, sizeof(int) * 2) < 0) error_y_exit("write");         //write a pipe, se comprueba error
+        if (write(pipefd, num, sizeof(num)) < 0) error_y_exit("write");         //write a pipe, se comprueba error
         alarm(5);
         sigsuspend(&mask);
-        if (read(fd2, num, sizeof(int)) < 0) error_y_exit("read_2");
-        sprintf(buff, "El proceso %d con PID %d ha terminado con estado %d", i, num[0], num[1]);
+        if (read(fd2, num, sizeof(num)) < 0) error_y_exit("read_2");
+        sprintf(buff, "El proceso %d con PID %d ha terminado con estado %d\n", i, num[0], num[1]);  
         write(1,buff, strlen(buff));
         ++i;
     }

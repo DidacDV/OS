@@ -20,7 +20,8 @@ void Usage() {
 int main(int argc, char *argv[]) {
     int fd;
     if (argc != 3) Usage();
-    if ((fd = creat("datos.int", S_IRUSR|S_IWUSR)) < 0) error(1, errno, "creat");
+    if ((fd = open("datos.int",O_CREAT|O_WRONLY, S_IRUSR|S_IWUSR)) < 0) error(1, errno, "creat");
+    lseek(fd, 0, SEEK_END);
     int num[argc - 1];
     for (int i = 1; i <= argc - 1; ++i) {
         num[i] = atoi(argv[i]);
