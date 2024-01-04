@@ -18,6 +18,11 @@ Crear la pipe:
 ```bash
 mknod mis_eventos p
 ```
+
+## guarda_pares
+El original deberia hacer algo parecido a este.
+
+
 # Comprobar que todos los programas funcionan
 > [!NOTE]
 > Todo en la misma terminal
