@@ -20,7 +20,7 @@ void error_y_exit(char *s) {
 
 void Usage() {
     char buff[100];
-    sprintf(buff, "Invalid argument\n Correct usage: ./n_espera_sig N");
+    sprintf(buff, "Invalid argument\n Correct usage: ./n_espera_sig N\n");
     write(1, buff, strlen(buff));
     exit(1);
 }
