@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     if (sigaction(SIGALRM,&sa, NULL) < 0) error_y_exit("sigaction");
     int fd1 = open(argv[1], O_RDONLY);               //datos.int
     int fd2 = open("exit_status.int", O_RDONLY);
-    int pipefd = open("mis_eventos", O_WRONLY);     //Se va a bloquear
+    int pipefd = open("mis_eventos", O_WRONLY);    
     int num[2], ret, i = 0;
     while ((ret = read(fd1, num, sizeof(num))) > 0) {
         char buff[100];
