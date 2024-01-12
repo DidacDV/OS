@@ -29,7 +29,7 @@ int locate_pid(int pid) {
     for (int i = 0; i < n; ++i) {
         if (vpid[i] == pid) return i;
     }
-    return -1;
+    return -1;                            //ni caso
 }
 
 int main(int argc, char *argv[]) {
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
         if (WIFEXITED(exit_code)) {
             exit_status = WEXITSTATUS(exit_code);
             int pos = locate_pid(pid);
-            lseek(fd, pos * 8, SEEK_SET);                   
+            lseek(fd, pos * 8, SEEK_SET);                                         
             write(fd, &pid, sizeof(int));
             write(fd, &exit_status, sizeof(int));  
         }  
