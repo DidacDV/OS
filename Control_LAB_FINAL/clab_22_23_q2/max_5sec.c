@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
         pid = fork();
         if (pid < 0) error(1, errno, "fork");
         else if (pid == 0) {
-            execvp("./nproc_time_max",argv);
+            execvp("./nproc_time_max",argv);                    //No lo hemos dado pero se usa este
             error(1, errno, "execvp");
         }    
     }
