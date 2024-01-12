@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 
     }
     else {                                                                //write integer
-        for (int i = 0; i < n_elem; ++i) {   
+        for (int i = 0; i < n_elem; ++i) {                                //como dice el enunciado escribimos en formato interno, si es un int escribimos un entero no lo pasamos a string ni nada
             write(10, &i,sizeof(int));                                    //leer a partir de la pàg. 57 de Documentación_labs.pdf (para entender, si quereis)
         }
     }
