@@ -8,7 +8,7 @@
 #include <signal.h>
 #include <string.h>
 
-int sahih = 0, idx = 0, *correct_pids;          
+int sahih = 0, *correct_pids;                       //New  
 
 void check_child(int pid[], int N, int mode) {      //mode == 1 -> Use WNOHANG, mode == 0 -> Do not use it
     char buff[100];
