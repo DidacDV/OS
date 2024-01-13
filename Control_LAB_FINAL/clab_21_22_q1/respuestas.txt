@@ -1,5 +1,15 @@
-No se puede garantizar que el ultimo mensaje sera "ended correctly",
+Para el caso que al menos un proceso hijo finaliza 
+correctamente, ¿podéis garantizar que el último mensaje será “ended correctly”?
+
+- No se puede garantizar que el ultimo mensaje sera "ended correctly",
 porque eso significa que si hay mas hijos vivos el proceso padre tendra
 que matar a todos los hijos (con SIGKILL) restantes, y consecuentemente
 apareceran los mensajes finalizacion de esos hijos. Solo se puede garantizar
 si el ultimo hijo vivo es el que acaba con exit(0).
+
+
+Explicad justificadamente en 
+el fichero respuestas.txt los valores numéricos mostrados en la segunda columna del 
+resultado (correspondiente al número de enlaces físicos a cada fichero).
+
+- Respondido en el README
