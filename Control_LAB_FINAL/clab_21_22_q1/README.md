@@ -24,4 +24,9 @@ La idea seria ejecutar de esta manera calc4
 ```
 
 ## dir.sh
+- Suponiendo que sale lo siguiente
+<p align="center">
+<img src="https://github.com/RogerCL24/OS/assets/90930371/3f29e0f6-73f1-4bc8-b570-4b31e6e98cd1"/>
+</p>
+
 
