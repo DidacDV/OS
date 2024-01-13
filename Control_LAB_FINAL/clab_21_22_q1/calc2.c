@@ -43,7 +43,7 @@ void check_child(int pid[], int N, int mode) {      //mode == 1 -> Use WNOHANG, 
 
 void Usage() {
     char buff[100];
-    sprintf(buff,"Invalid argument\n Correct usage: ./calc1 N file\n");
+    sprintf(buff,"Invalid argument\n Correct usage: ./calc2 N file\n");
     write(1, buff, strlen(buff));
     exit(0);
 }
