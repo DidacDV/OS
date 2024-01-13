@@ -17,3 +17,11 @@
 <img src="https://github.com/RogerCL24/OS/assets/90930371/147738df-4012-4aef-91ae-bf96e53ada85"/>
 </p>
 
+## calc4.c
+La idea seria ejecutar de esta manera calc4
+```bash
+./calc4 10 < test00.txt
+```
+
+##dir.sh
+
