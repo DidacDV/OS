@@ -27,7 +27,7 @@ La idea seria ejecutar de esta manera calc4
 </p>
 
 Es lo mismo que el numero de referencias en la tabla de inodos de cualquier examen final de teoria de SO:
-- El primero `.`: Tiene 10 referencias, él mismo(1) + directorios hijo(8) + directorio padre(1) <sub> Que seria _clab_21_22_q1_ en mi caso</sub>.
+- El primero `.`: Tiene 10 referencias, él mismo(1) + directorios hijo(8) + directorio padre(1) <sub> Que seria _clab_21_22_q1_ en mi caso.</sub>
 - El segundo `..`: Él mismo(1)  <sub> _clab_21_22_q1_ (que es el padre de D1) </sub> + _D1_ (1) + Padre de  _clab_21_22_q1_.
 - El tercero `D_1_1`: _D1_(1) <sub> Padre de _D_1_1_ </sub> + _D_1_1_ (1) + subdirectorios de _D_1_1_ (2).
 - Y asi con los demas.
