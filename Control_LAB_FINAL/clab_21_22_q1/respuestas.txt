@@ -1,0 +1,5 @@
+No se puede garantizar que el ultimo mensaje sera "ended correctly",
+porque eso significa que si hay mas hijos vivos el proceso padre tendra
+que matar a todos los hijos (con SIGKILL) restantes, y consecuentemente
+apareceran los mensajes finalizacion de esos hijos. Solo se puede garantizar
+si el ultimo hijo vivo es el que acaba con exit(0).
