@@ -1,6 +1,3 @@
-> [!WARNING]
-> No esta terminado
-
 
 ## hijo1.c
  - Poned el MAXDELAY_S que querais
