@@ -21,8 +21,7 @@ int main(int argc, int *argv[]) {
     int exit_stat, exit_code;
     if (mknod("./PipeA", S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
    
-    for (int i = 1; i < argc; ++i) { 
-        int p = 0;
+    for (int i = 1; i < argc; ++i) {
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
         else if (pid == 0) {
