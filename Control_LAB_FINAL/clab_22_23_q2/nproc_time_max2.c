@@ -10,7 +10,7 @@
 #include <string.h>
 
 void Usage() {
-    error(1,0, "Invalid argument. \n Correct usage: ./nproc_time PID1 PID2 ... PIDN");
+    error(1,0, "Invalid argument. \n Correct usage: ./nproc_time_max2 PID1 PID2 ... PIDN");
 }
 
 
