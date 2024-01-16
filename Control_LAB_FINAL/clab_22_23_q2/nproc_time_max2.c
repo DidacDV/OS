@@ -20,14 +20,13 @@ int main(int argc, int *argv[]) {
     if (argc < 2) Usage();
     int exit_stat, exit_code;
     for (int i = 1; i < argc; ++i) { 
-        int p = 0;
         int *fd = malloc(2*sizeof(int));
         pipe(fd);
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
         else if (pid == 0) {
             dup2(fd[1], 1);
-            close(fd[0]);
+            close(fd[0]); close(fd[1]);
             execlp("./proc_time","proc_time", argv[i], NULL);
             error(1, errno, "execlp");
         }
