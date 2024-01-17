@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {
         write(1, buff, strlen(buff));
     }
     else {
+         close(fd[0]);
         for (int i = 0; i < n; ++i) {     
                 int pidn = fork();
                 if (pidn < 0) error(1,errno, "fork_2");
@@ -40,7 +41,7 @@ int main(int argc, char *argv[]) {
                     char buff[100];
                     sprintf(buff, "%d", seed);
                     dup2(fd[1], 1);
-                    close(fd[0]);
+                    close(fd[1]);
                     execlp("./dummy2", "dummy2",buff, NULL);
                     error(1, errno, "execlp");
                 }
@@ -54,6 +55,7 @@ int main(int argc, char *argv[]) {
                 }
             
         }
+        close(fd[1]);
         char buff[256];
         sprintf(buff, "El total es %d\n", seed);
         write(1, buff, strlen(buff));
