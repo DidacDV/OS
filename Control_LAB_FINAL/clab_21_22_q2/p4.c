@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         write(1, buff, strlen(buff));
     }
     else {
-         close(fd[0]);
+        close(fd[0]);
         for (int i = 0; i < n; ++i) {     
                 int pidn = fork();
                 if (pidn < 0) error(1,errno, "fork_2");
