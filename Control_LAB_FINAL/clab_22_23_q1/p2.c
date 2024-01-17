@@ -58,7 +58,6 @@ int main(int argc, char *argv[]) {
             int ret, *elemi;
             char *elemc;
             if (strcmp(argv[i + 1],"c") == 0) {
-               char c; 
                int j = 0;
                elemc = malloc(n * sizeof(char));         //En verdad deberia ser más, pero malloc siempre reserva más de lo necesario :)
                close(fdwr);                               //OPCION 1
