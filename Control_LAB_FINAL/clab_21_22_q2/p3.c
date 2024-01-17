@@ -32,8 +32,8 @@ int main(int argc, char *argv[]) {
     sigfillset(&mask);
     if (sigprocmask(SIG_SETMASK, &mask, NULL) < 0) error(1, errno, "sigprocmask_1");
     int fd;
+    close(1);
     if ((fd = creat(argv[4], S_IRUSR|S_IWUSR)) < 0) error(1, errno, "creat");       // = open(O_CREAT|O_WRONLY|O_TRUNC)
-    dup2(fd, 1);
     struct sigaction sa;
     sa.sa_handler = trat_alrm;
     sa.sa_flags = 0;
