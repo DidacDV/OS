@@ -19,7 +19,8 @@ int main(int argc, int *argv[]) {
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
         if (pid == 0) {
-            execl("./proc_time","proc_time", argv[i], NULL);
+            execlp("proc_time","./proc_time", argv[i], NULL);
+
             error(1, errno, "execlp");
         }
         else {

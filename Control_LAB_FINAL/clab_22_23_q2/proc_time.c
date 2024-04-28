@@ -18,9 +18,8 @@ int main(int argc, char *argv[]) {
     char buff[100], s[100];
     char c;
     if (argc != 2) Usage();
-    int pid = atoi(argv[1]);                                     //could not be necessary
-    sprintf(buff,"/proc/%d/stat",pid);
-
+    sprintf(buff,"/proc/%s/stat",argv[1]);                  
+    
     int fd = open(buff,O_RDONLY);
     if (fd < 0) exit(255);
 
@@ -41,7 +40,7 @@ int main(int argc, char *argv[]) {
         number[p] = c;
         ++p;
     }
-    unsigned long t = atoi(&number[0]);
+    unsigned long t = atoi(number);
     t += atoi(&number[space]);
     int time = t/sysconf(_SC_CLK_TCK);              //command to convert to seconds (detailed on man proc) 
     

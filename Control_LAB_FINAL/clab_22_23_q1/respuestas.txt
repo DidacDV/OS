@@ -1,0 +1,2 @@
+ln -s p1 p1-char
+ln -s p1 p1-integer

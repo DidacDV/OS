@@ -10,36 +10,31 @@
 #include <string.h>
 
 void Usage() {
-    error(1,0, "Invalid argument. \n Correct usage: ./nproc_time PID1 PID2 ... PIDN");
+    error(1,0, "Invalid argument. \n Correct usage: ./nproc_time_max PID1 PID2 ... PIDN");
 }
 
 
 int main(int argc, int *argv[]) {
     int max_time = 0, fd1, fd2, t, ret;
-    char buff[100], c, number[100];
+    char buff[100], number[100];
     if (argc < 2) Usage();
     int exit_stat, exit_code;
-    //if (mknod("./PipeA", S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0) error(1, errno, "mknod");
+    if (mknod("./PipeA", S_IRUSR|S_IWUSR|__S_IFIFO, 0) < 0 && errno != EEXIST) error(1, errno, "mknod");
    
-    for (int i = 1; i < argc; ++i) { 
-        int p = 0;
+    for (int i = 1; i < argc; ++i) {
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
         else if (pid == 0) {
             close(1);
             if ((fd2 = open("PipeA" ,O_WRONLY)) < 0) error(1, errno, "open write");
-            execl("proc_time","./proc_time", argv[i], NULL);
+            execlp("./proc_time","proc_time", argv[i], NULL);
             error(1, errno, "execlp");
         }
         else {
             if ((fd1 = open("PipeA", O_RDONLY)) < 0) error(1, errno, "open read");
-            while ((ret = read(fd1, &c, sizeof(char))) > 0) {
-                number[p] = c;
-                number[p + 1] = ' ';
-                ++p;
-            }
-            if (ret < 0) error(1, errno, "read");
-            t = atoi(&number[0]);
+            if ((ret = read(fd1, number, sizeof(number))) < 0) error(1, errno, "read");
+            number[ret] = '\0';
+            t = atoi(number);
             if (t > max_time) max_time = t;
             if (waitpid(pid, &exit_stat, 0) < 0) error(1, errno, "waitpid");
             if (WIFEXITED(exit_stat)) {
@@ -48,7 +43,7 @@ int main(int argc, int *argv[]) {
             }
         }
     }
-    sprintf(buff, "Max_time: %d",max_time);
+    sprintf(buff, "Max_time: %d\n",max_time);
     if (write(1,buff, strlen(buff)) < 0) error(1, errno, "write");
 
 }

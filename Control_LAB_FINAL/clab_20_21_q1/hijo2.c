@@ -41,6 +41,6 @@ main (int argc, char *argv[])
      if (read(fd, &c, sizeof(char)) < 0) error(1, errno, "read fd");
 
     sprintf(s, "Hijo2[id=%02d pid=%5d] pos=%d char=%c", id, getpid(), pos, c);
-    if (write(2,s,strlen(s)) < 0) error(1, errno, "write");
+    if (write(1,s,strlen(s)) < 0) error(1, errno, "write");
   }
 }

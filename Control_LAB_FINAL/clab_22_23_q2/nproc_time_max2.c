@@ -10,7 +10,7 @@
 #include <string.h>
 
 void Usage() {
-    error(1,0, "Invalid argument. \n Correct usage: ./nproc_time PID1 PID2 ... PIDN");
+    error(1,0, "Invalid argument. \n Correct usage: ./nproc_time_max2 PID1 PID2 ... PIDN");
 }
 
 
@@ -20,27 +20,22 @@ int main(int argc, int *argv[]) {
     if (argc < 2) Usage();
     int exit_stat, exit_code;
     for (int i = 1; i < argc; ++i) { 
-        int p = 0;
         int *fd = malloc(2*sizeof(int));
         pipe(fd);
         int pid = fork();
         if (pid < 0) error(1,errno, "fork");
         else if (pid == 0) {
             dup2(fd[1], 1);
-            close(fd[0]);
-            execl("proc_time","./proc_time", argv[i], NULL);
+            close(fd[0]); close(fd[1]);
+            execlp("./proc_time","proc_time", argv[i], NULL);
             error(1, errno, "execlp");
         }
         else {
             close(fd[1]);
-            while ((ret = read(fd[0], &c, sizeof(char))) > 0) {
-                number[p] = c;
-                number[p + 1] = ' ';
-                ++p;
-            }
-            if (ret < 0) error(1, errno, "read");
+            if ((ret = read(fd[0], number, sizeof(number))) < 0) error(1, errno, "read");
+            number[ret] = '\0';
             free(fd);
-            t = atoi(&number[0]);
+            t = atoi(number);
             if (t > max_time) max_time = t;
         }
     }
